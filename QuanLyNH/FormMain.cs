@@ -1,4 +1,5 @@
 ﻿using Guna.UI2.WinForms;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,20 +16,20 @@ namespace QuanLyNH
     public partial class FormMain : Form
     {
         string ChuoiKN = "Data Source=HUY;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
-        SqlConnection KeNoi = new SqlConnection();
+        SqlConnection KeNoi;
+
         public FormMain()
         {
             InitializeComponent();
+            KeNoi = new SqlConnection(ChuoiKN);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            KeNoi.ConnectionString = ChuoiKN;
-
             //try
             //{
             //    KeNoi.Open();
-            //    if(KeNoi.State == ConnectionState.Open)
+            //    if (KeNoi.State == ConnectionState.Open)
             //        MessageBox.Show("Kết nối thành công", "Thông báo");
             //}
             //catch (Exception)
@@ -41,7 +42,27 @@ namespace QuanLyNH
             //    KeNoi.Close();
             //}
 
-            
+            try
+            {
+                if (KeNoi.State != ConnectionState.Open)
+                    KeNoi.Open();
+
+                string query = "SELECT * FROM MonAn";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, KeNoi);
+                DataTable table = new DataTable();
+                adapter.Fill(table);
+                dgvMonAn.DataSource = table;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+            finally
+            {
+                if (KeNoi.State == ConnectionState.Open)
+                    KeNoi.Close();
+            }
+
         }
 
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
@@ -56,10 +77,7 @@ namespace QuanLyNH
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
-            //btnNhanvien.Text = "Quản lý món ăn";
-            btnNhanvien.Image = Properties.Resources.food_icon; // icon từ Resources
-            btnNhanvien.ImageAlign = HorizontalAlignment.Left;
-            btnNhanvien.TextAlign = HorizontalAlignment.Right;
+            
         }
 
         private void btnBan_Click(object sender, EventArgs e)
@@ -71,5 +89,16 @@ namespace QuanLyNH
         {
 
         }
+
+        private void dgwMonAn_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void gpbThongtin_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
