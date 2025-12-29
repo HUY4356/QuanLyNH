@@ -26,8 +26,8 @@ namespace QuanLyNH.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HUY;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False;Trust" +
-            "ServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False" +
+            "")]
         public string QLNHConnectionString {
             get {
                 return ((string)(this["QLNHConnectionString"]));
