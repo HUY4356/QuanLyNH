@@ -7,18 +7,19 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace QuanLyNH
 {
-    public partial class FormMain : Form
+    public partial class frmMain : Form
     {
         string ChuoiKN = "Data Source=HUY;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
         SqlConnection KeNoi;
 
-        public FormMain()
+        public frmMain()
         {
             InitializeComponent();
             KeNoi = new SqlConnection(ChuoiKN);
@@ -41,64 +42,50 @@ namespace QuanLyNH
             //{
             //    KeNoi.Close();
             //}
+            this.FormBorderStyle = FormBorderStyle.None;
 
-            try
-            {
-                if (KeNoi.State != ConnectionState.Open)
-                    KeNoi.Open();
-
-                string query = "SELECT * FROM MonAn";
-                SqlDataAdapter adapter = new SqlDataAdapter(query, KeNoi);
-                DataTable table = new DataTable();
-                adapter.Fill(table);
-                dgvMonAn.DataSource = table;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
-            finally
-            {
-                if (KeNoi.State == ConnectionState.Open)
-                    KeNoi.Close();
-            }
-
+       
         }
 
-        private void guna2Panel1_Paint(object sender, PaintEventArgs e)
+        private void btnQuanLyMonAn_Click(object sender, EventArgs e)
         {
-
+            pnlContent.Controls.Clear();
+            QuanLyMonAn uc = new QuanLyMonAn();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
         }
 
-        private void pnl1_Paint(object sender, PaintEventArgs e)
+        private void btnQuanLyHoaDon_Click(object sender, EventArgs e)
         {
-
+            pnlContent.Controls.Clear();
+            ucHoaDon uc = new ucHoaDon();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
         }
 
-        private void btnNhanvien_Click(object sender, EventArgs e)
+        private void btnQuanLyNhanvien_Click(object sender, EventArgs e)
         {
             
         }
 
-        private void btnBan_Click(object sender, EventArgs e)
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void lblConten_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void lblMaMon_Click(object sender, EventArgs e)
+        private void guna2ImageButton1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void dgwMonAn_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ptbLogo_Click(object sender, EventArgs e)
         {
-
+            //ptbLogo.Image = Image.FromFile("Anh1.jpg");
         }
-
-        private void gpbThongtin_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
