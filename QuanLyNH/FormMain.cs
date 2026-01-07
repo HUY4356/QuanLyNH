@@ -15,7 +15,7 @@ namespace QuanLyNH
 {
     public partial class FormMain : Form
     {
-        string ChuoiKN = "Data Source=HUY;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+        string ChuoiKN = "Data Source=localhost;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False";
         SqlConnection KeNoi;
 
         public FormMain()
@@ -51,7 +51,7 @@ namespace QuanLyNH
                 SqlDataAdapter adapter = new SqlDataAdapter(query, KeNoi);
                 DataTable table = new DataTable();
                 adapter.Fill(table);
-                dgvMonAn.DataSource = table;
+                //dgvMonAn.DataSource = table;
             }
             catch (Exception ex)
             {
@@ -77,11 +77,19 @@ namespace QuanLyNH
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
-            
+            pnlContent.Controls.Clear();
+            ucQuanLyNhanVien uc = new ucQuanLyNhanVien();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
+
         }
 
         private void btnBan_Click(object sender, EventArgs e)
         {
+            pnlContent.Controls.Clear();
+            ucQLBan uc = new ucQLBan();
+            uc.Dock = DockStyle.Fill;
+            pnlContent.Controls.Add(uc);
 
         }
 
@@ -100,5 +108,9 @@ namespace QuanLyNH
 
         }
 
+        private void pnlContent_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

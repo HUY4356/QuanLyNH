@@ -16,7 +16,7 @@ namespace QuanLyNH
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormQLNhanVien());
+            Application.Run(new FormMain());
         }
     }
 }
