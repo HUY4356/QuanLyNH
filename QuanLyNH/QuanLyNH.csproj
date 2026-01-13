@@ -59,6 +59,7 @@
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -91,11 +92,29 @@
       <DependentUpon>QuanLyMonAn.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
     <Compile Include="ucHoaDon.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucHoaDon.Designer.cs">
       <DependentUpon>ucHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucQLBan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucQLBan.Designer.cs">
+      <DependentUpon>ucQLBan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucQLNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucQLNhanVien.Designer.cs">
+      <DependentUpon>ucQLNhanVien.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -108,12 +127,22 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="QuanLyMonAn.resx">
       <DependentUpon>QuanLyMonAn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="test.resx">
+      <DependentUpon>test.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucHoaDon.resx">
       <DependentUpon>ucHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucQLBan.resx">
+      <DependentUpon>ucQLBan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucQLNhanVien.resx">
+      <DependentUpon>ucQLNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -141,6 +170,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\png-clipart-x-signage-computer-icons-encapsulated-postscript-wrong-miscellaneous-angle.png" />
+    <None Include="Resources\cancel_50px.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

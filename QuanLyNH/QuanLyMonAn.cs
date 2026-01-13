@@ -83,15 +83,6 @@ namespace QuanLyNH
                 MessageBox.Show($"Lỗi: {ex.Message}");
             }
         }
-        private void dgvMonAn_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvMonAn.CurrentRow != null)
-            {
-                txtMaMon.Text = dgvMonAn.CurrentRow.Cells["MaMon"].Value.ToString();
-                txtTenMon.Text = dgvMonAn.CurrentRow.Cells["TenMon"].Value.ToString();
-                txtDonGia.Text = dgvMonAn.CurrentRow.Cells["DonGia"].Value.ToString();
-            }
-        }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -177,7 +168,7 @@ namespace QuanLyNH
 
         private void txtTiemKiem_TextChanged(object sender, EventArgs e)
         {
-            string query = "SELECT * FROM MonAn WHERE MaMon LIKE @TuKhoa OR TenMon LIKE @TuKhoa";
+            string query = "SELECT * FROM MonAn WHERE MaMon LIKE @TuKhoa OR TenMon LIKE @TuKhoa OR DonGia LIKE @TuKhoa";
             try
             {
                 DataTable dt = DatabaseHelper.ExecuteQuery(
@@ -189,47 +180,37 @@ namespace QuanLyNH
                 {
                     dgvMonAn.DataSource = dt; // hiển thị kết quả lên DataGridView
                 }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy món ăn phù hợp.");
-                    dgvMonAn.DataSource = null; // xóa dữ liệu cũ nếu không có kết quả
-                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message);
             }
         }
-
-        private void btnTimKiem_Click(object sender, EventArgs e)
-        {
-            string query = "SELECT * FROM MonAn WHERE MaMon LIKE @TuKhoa OR TenMon LIKE @TuKhoa";
-            try
-            {
-                DataTable dt = DatabaseHelper.ExecuteQuery(
-                    query,
-                    new SqlParameter("@TuKhoa", "%" + txtTimKiem.Text.Trim() + "%")
-                );
-
-                if (dt.Rows.Count > 0)
-                {
-                    dgvMonAn.DataSource = dt; // hiển thị kết quả lên DataGridView
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy món ăn phù hợp.");
-                    dgvMonAn.DataSource = null; // xóa dữ liệu cũ nếu không có kết quả
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message);
-            }
-        }
-
+        
         private void btnHuy_Click(object sender, EventArgs e)
         {
             ResetTextBox();
+        }
+
+        private void txtMaMon_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvMonAn_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvMonAn.CurrentRow != null)
+            {
+                txtMaMon.Text = dgvMonAn.CurrentRow.Cells["colMaMon"].Value.ToString();
+                txtTenMon.Text = dgvMonAn.CurrentRow.Cells["colTenMon"].Value.ToString();
+                txtDonGia.Text = dgvMonAn.CurrentRow.Cells["colDonGia"].Value.ToString();
+            }
+        }
+
+        private void btnHuyTimKiem_Click(object sender, EventArgs e)
+        {
+            txtTimKiem.Clear();
         }
     }
 }

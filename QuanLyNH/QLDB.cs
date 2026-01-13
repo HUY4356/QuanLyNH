@@ -12,7 +12,7 @@ namespace QuanLyNH
     {
         public static class DatabaseHelper
         {
-            private static string ChuoiKN = "Data Source=HUY;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False;TrustServerCertificate=True";
+            private static string ChuoiKN = "Data Source=localhost;Initial Catalog=QLNH;Integrated Security=True;Encrypt=False";
 
             public static SqlConnection GetConnection()
             {
